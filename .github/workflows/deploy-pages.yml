@@ -37,6 +37,9 @@ jobs:
           contents = contents.replace("<base href=\"/\">", "<base href=\"/hyperbaric-oxygen-app-preview/\">")
           contents = contents.replace("<title>肾内科随访助手</title>", "<title>高压氧治疗室</title>")
           index.write_text(contents)
+          bootstrap = destination / "flutter_bootstrap.js"
+          bootstrap_contents = bootstrap.read_text()
+          bootstrap.write_text(bootstrap_contents.replace("{\"engineRevision\":", "{\"useLocalCanvasKit\":true,\"engineRevision\":"))
           PY
       - uses: actions/upload-pages-artifact@v4
         with:
