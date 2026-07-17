@@ -32,6 +32,11 @@ jobs:
                       target.parent.mkdir(parents=True, exist_ok=True)
                       with archive.open(info) as source, target.open("wb") as output:
                           output.write(source.read())
+          index = destination / "index.html"
+          contents = index.read_text()
+          contents = contents.replace("<base href=\"/\">", "<base href=\"/hyperbaric-oxygen-app-preview/\">")
+          contents = contents.replace("<title>肾内科随访助手</title>", "<title>高压氧治疗室</title>")
+          index.write_text(contents)
           PY
       - uses: actions/upload-pages-artifact@v4
         with:
